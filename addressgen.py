@@ -1,5 +1,6 @@
 import mini_ecdsa
 import hashlib
+from blockexplorer import get_address as lookup
 
 C = mini_ecdsa.CurveOverFp.secp256k1()
 P = mini_ecdsa.Point.secp256k1()
@@ -30,6 +31,12 @@ def checksum(hash160):
     sha_once = hashlib.new('sha256', bytearray.fromhex(hash160)).hexdigest()
     sha_twice = hashlib.new('sha256', bytearray.fromhex(sha_once)).hexdigest()
     return sha_twice[:8]
+
+def amount_received(address):
+    return str(lookup(address).total_received)
+
+def balance(address):
+    return str(lookup(address).final_balance)
 
 def new_address():
     private_key, public_key = mini_ecdsa.generate_keypair(C, P, n)
@@ -116,7 +123,9 @@ def build_address(str_x, str_y):
     return from_hash160(rmd)
 
 def from_hash160(hash160):
-    return tobase58(hash160 + checksum(hash160))
+    address = tobase58(hash160 + checksum(hash160))
+    print 'Received: ' + amount_received(address)
+    return address
 
 def build_address_no_vbyte(strx, stry):
     pub_key_string = strx + stry
