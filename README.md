@@ -1,7 +1,9 @@
-bangbangtalk
+bangbangtalk 2016
 ===============
 
 Includes slides (with some bonus material on why ECDSA works that I needed to cut out of the talk for time reasons) and the python code I used to generate addresses, which depends on my own [mini_ecdsa](https://github.com/qubd/mini_ecdsa) module, and an [API provided by blockchain.info](https://github.com/blockchain/api-v1-client-python).
+
+You can watch a [video of the talk on youtube](https://www.youtube.com/watch?v=C3ox1zQcV_I&t=2h6m13s)!
 
 If you're interested in learning about elliptic curve cryptography, and need somewhere to start, I would check out [this series on Andrea Corbellini's blog](http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/).
 
